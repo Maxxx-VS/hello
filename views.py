@@ -4,6 +4,8 @@ import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 
+
+
 def index(request):
     return HttpResponse("<h1>Главная</h1>"
                         "<h2>Строка №2</h2>"
@@ -46,10 +48,12 @@ def contacts(request):
     return HttpResponse("<h1>Контакты</h1")
 
 def branches(request):
-    return HttpResponse("<h1>Главная по городам</h1")
+    return HttpResponse("request")
 
 def london(request):
-    return render(request, "london.html")
+    sity = ["london", "paris", "moscow", "omsk", "ekb", "vladivostok"]
+    data = {"s": sity}
+    return render(request, "london.html", context=data)
 
 def paris(request):
     return render(request, "paris.html")
