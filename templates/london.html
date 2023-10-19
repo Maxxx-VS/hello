@@ -8,10 +8,12 @@
     <title>Django</title>
 </head>
 <body>
-    <h1>{{ header }}</h1>
-    <p>Имя: {{ user.name }} Возраст: {{ user.age }}</p>
-    <p>Адрес: ул.{{ adress.0 }}, дом {{ adress.1 }}, кв. {{ adress.2 }}</p>
-    <p>Языки: {{ langs.0 }}, {{ langs.1 }}</p>
+
+        <ul>
+        {% for i in langs %}
+        <li> {{ i }} </li>
+        {% endfor%}
+        </ul>
 
 </body>
 </html>

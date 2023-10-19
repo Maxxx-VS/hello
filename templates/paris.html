@@ -8,8 +8,19 @@
     <title>Django</title>
 </head>
 <body>
-    <h2>{{ header }}</h2>
-    <p>{{ message }}</p>
-
+    <li class="{%block about_1%}{%endblock%}"><a href="/">Главная</a> </li>
+    <li class="{%block about_2%}{%endblock%}"><a href="/news">Новости</a> </li>
+    <li class="{%block about_3%}{%endblock%}"><a href="/management">Руководство компании</a> </li>
+    <li class="{%block about_4%}{%endblock%}"><a href="/about_company">О компании</a> </li>
+    <li class="{%block about_5%}{%endblock%}"><a href="/contacts">Контакты</a> </li>
+    <li class="{%block about_6%}{%endblock%}"><a href="/branches">Главная по городам</a> </li>
+    <br>
+    Сейчас {% now "l, F j, Y g:i:s A" %}
+    <br>
+        <ul>
+        {% for i in langs %}
+        <li> {{ i }} </li>
+        {% endfor%}
+    </ul>
 </body>
 </html>

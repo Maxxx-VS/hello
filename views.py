@@ -1,3 +1,6 @@
+import os
+import datetime
+
 from django.shortcuts import render
 from django.http import HttpResponse
 
@@ -6,11 +9,25 @@ def index(request):
                         "<h2>Строка №2</h2>"
                         "<h3>Строка №3</h3>"
                         "<p>Добро пожаловать на курс по изучению фреймворка Django с нуля.<br> Мы начнем с "
-                        "самых простых вещей: <br>"
-                        "<li>все, что вам потребуется – "
+                        "самых простых вещей. <br><br>"
+                        "Все, что вам потребуется – "
                         "<li>базовые знания Python. Общее представление о "
-                        "<li>HTML/CSS тоже пригодится, но если вы раньше не сталкивались с "
-                        "<li>версткой – ничего страшного, разберемся.</p>")
+                        "<li>HTML/CSS тоже пригодится"
+                        "<li>но если вы раньше не сталкивались с "
+                        "версткой – ничего страшного, разберемся.</p>")
+
+def index_en(request):
+    return HttpResponse("<h1>Home</h1"
+                         "<h2>Line No. 2</h2>"
+                         "<h3>Line No. 3</h3>"
+                         "<p>Welcome to the course on learning the Django framework from scratch.<br> We'll start with "
+                         "the simplest things. <br><br>"
+                         "Everything you need - "
+                         "<li>Basic knowledge of Python. General understanding of "
+                         "<li>HTML/CSS will come in handy too"
+                         "<li>but if you haven't encountered before"
+                         "layout - no big deal, we'll figure it out.</p>")
+
     # data = ["Python", "Java", "C#", "Go", "C++", "JS"]
     # return HttpResponse('About web')) #!!!!!
 
@@ -38,6 +55,18 @@ def paris(request):
     return render(request, "paris.html")
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 # def branches(request, name, sity, age):
 #     return HttpResponse(f"""
 #         <h1>Я живу в: {country}</h1>
@@ -47,12 +76,14 @@ def paris(request):
 
 # def about(request):
 #     # return render(request, "london.html")
-#     header = "Данные пользователя"
-#     langs = ["Python", "Java", "C#"]
-#     user = {"name" : "Tom", "age" : 23}
-#     adress = ("Абрикосовая", 23, 45)
-#     data = {"header": header, "langs": langs, "user":user, "adress":adress }
-#     return render(request, "london.html", context=data)
+#     # header = "Данные пользователя"
+#     # langs = ["Python", "Java", "C#"]
+#     # user = {"name" : "Tom", "age" : 23}
+#     # adress = ("Абрикосовая", 23, 45)
+#     # data = {"header": header, "langs": langs, "user":user, "adress":adress }
+#     i = ["Python", "Java", "C#", "Go", "C++", "JS"]
+#     # return HttpResponse('About web')) #!!!!!
+#     return render(request, "london.html", context=i)
 
 #   host = request.META["HTTP_HOST"] #адрес сервера
 #   user_agent = request.META["HTTP_USER_AGENT"] #данные браузера
