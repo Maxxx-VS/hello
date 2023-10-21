@@ -4,79 +4,11 @@ import datetime
 from django.shortcuts import render
 from django.http import HttpResponse
 
-
-
-def index(request):
-    return HttpResponse("<h1>Главная</h1>"
-                        "<h2>Строка №2</h2>"
-                        "<h3>Строка №3</h3>"
-                        "<p>Добро пожаловать на курс по изучению фреймворка Django с нуля.<br> Мы начнем с "
-                        "самых простых вещей. <br><br>"
-                        "Все, что вам потребуется – "
-                        "<li>базовые знания Python. Общее представление о "
-                        "<li>HTML/CSS тоже пригодится"
-                        "<li>но если вы раньше не сталкивались с "
-                        "версткой – ничего страшного, разберемся.</p>")
-
-def index_en(request):
-    return HttpResponse("<h1>Home</h1"
-                         "<h2>Line No. 2</h2>"
-                         "<h3>Line No. 3</h3>"
-                         "<p>Welcome to the course on learning the Django framework from scratch.<br> We'll start with "
-                         "the simplest things. <br><br>"
-                         "Everything you need - "
-                         "<li>Basic knowledge of Python. General understanding of "
-                         "<li>HTML/CSS will come in handy too"
-                         "<li>but if you haven't encountered before"
-                         "layout - no big deal, we'll figure it out.</p>")
-
-    # data = ["Python", "Java", "C#", "Go", "C++", "JS"]
-    # return HttpResponse('About web')) #!!!!!
-
-def news(request):
-    return HttpResponse("<h1>Новости</h1>")
-    # data = {"header": "Hi Dgango!", "message": "Добро пожаловать"}
-    # return render(request, "paris.html", context=data)
-
-def management(request):
-    return HttpResponse("<h1>Руководство компании</h1")
-
-def about_company(request):
-    return HttpResponse("<h1>О компании</h1")
-
-def contacts(request):
-    return HttpResponse("<h1>Контакты</h1")
-
-def branches(request):
-    return HttpResponse("request")
-
-def london(request):
-    sity = ["london", "paris", "moscow", "omsk", "ekb", "vladivostok"]
-    data = {"s": sity}
-    return render(request, "london.html", context=data)
-
-def paris(request):
-    return render(request, "paris.html")
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # def branches(request, name, sity, age):
 #     return HttpResponse(f"""
 #         <h1>Я живу в: {country}</h1>
 #         <h1>Я живу в городе: {sity}</h1>
 #         <h1>Родной язык: {age} годам</h1>
-
 
 # def about(request):
 #     # return render(request, "london.html")
@@ -107,7 +39,7 @@ def paris(request):
 #         <h1>Меня зовут: {name}</h1>
 #         <h1>Я живу в городе: {sity}</h1>
 #         <h1>Моя старость равна: {age} годам</h1>
-""")
+# """)
 
 # def about(request):
 #     return HttpResponse('About web')
@@ -127,3 +59,81 @@ def paris(request):
 #     return HttpResponse("Новые товары")
 # def top(request):
 #     return HttpResponse("Топ за неделю")
+
+# data = ["Python", "Java", "C#", "Go", "C++", "JS"]
+# return HttpResponse('About web')) #!!!!!
+
+def index(request):
+    return HttpResponse("<h1>Главная</h1>"
+                        "<h2>Строка №2</h2>"
+                        "<h3>Строка №3</h3>"
+                        "<p>Добро пожаловать на курс по изучению фреймворка Django с нуля.<br> Мы начнем с "
+                        "самых простых вещей. <br><br>"
+                        "Все, что вам потребуется – "
+                        "<li>базовые знания Python. Общее представление о "
+                        "<li>HTML/CSS тоже пригодится"
+                        "<li>но если вы раньше не сталкивались с "
+                        "версткой – ничего страшного, разберемся.</p>")
+def index_en(request):
+    return HttpResponse("<h1>Home</h1"
+                         "<h2>Line No. 2</h2>"
+                         "<h3>Line No. 3</h3>"
+                         "<p>Welcome to the course on learning the Django framework from scratch.<br> We'll start with "
+                         "the simplest things. <br><br>"
+                         "Everything you need - "
+                         "<li>Basic knowledge of Python. General understanding of "
+                         "<li>HTML/CSS will come in handy too"
+                         "<li>but if you haven't encountered before"
+                         "layout - no big deal, we'll figure it out.</p>")
+def news(request):
+    return HttpResponse("<h1>Новости</h1>")
+    # data = {"header": "Hi Dgango!", "message": "Добро пожаловать"}
+    # return render(request, "paris.html", context=data)
+def management(request):
+    return HttpResponse("<h1>Руководство компании</h1")
+def about_company(request):
+    return HttpResponse("<h1>О компании</h1")
+def contacts(request):
+    return HttpResponse("<h1>Контакты</h1")
+def branches(request):
+    return HttpResponse("Главная страница городов")
+def london(request):
+    sity = ["london", "paris", "moscow", "omsk", "ekb", "vladivostok"]
+    data = {"s": sity}
+    return render(request, "london.html", context=data)
+def paris(request):
+    return render(request, "paris.html")
+def cooking(request):
+    return HttpResponse("Главная страница городов")
+    # return render(request, "cooking.html")
+def plov(request, portion):
+    return HttpResponse(f"<h1>Вы готовите плов на {portion} порций</p>"
+                        f"<li>Мясо {1 * portion} кг. </li>"
+                        f"<li>Рис {0,5 * portion} кг. </li>"
+                        f"<li>Морковь {0,25 * portion} кг. </li>"
+                        f"<li>Лук {0,1 * portion} кг. </li>")
+def soup(request, portion):
+    return HttpResponse(f"<h1>Вы готовите суп на {portion} порций</p>"
+                        f"<li>Картошка {0,5 * portion} кг. </li>"
+                        f"<li>макароны {0,5 * portion} кг. </li>"
+                        f"<li>Морковь {0,1 * portion} кг. </li>"
+                        f"<li>Лук {0,1 * portion} кг. </li>")
+def porridge(request, portion):
+    return HttpResponse(f"<h1>Вы готовите суп на {portion} порций</p>"
+                        f"<li>Мясо {1 * portion} кг. </li>"
+                        f"<li>Рис {0,5 * portion} кг. </li>"
+                        f"<li>Морковь {0,25 * portion} кг. </li>"
+                        f"<li>Лук {0,1 * portion} кг. </li>")
+
+
+
+
+
+
+
+
+
+
+
+
+
