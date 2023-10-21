@@ -104,26 +104,25 @@ def london(request):
 def paris(request):
     return render(request, "paris.html")
 def cooking(request):
-    return HttpResponse("Главная страница городов")
-    # return render(request, "cooking.html")
+    return render(request, "cooking.html")
 def plov(request, portion):
-    return HttpResponse(f"<h1>Вы готовите плов на {portion} порций</p>"
-                        f"<li>Мясо {1 * portion} кг. </li>"
-                        f"<li>Рис {0,5 * portion} кг. </li>"
-                        f"<li>Морковь {0,25 * portion} кг. </li>"
-                        f"<li>Лук {0,1 * portion} кг. </li>")
+    return HttpResponse(f"<h1>Вы готовите ПЛОВ на {portion} порций</h1>"
+                        f"<li>Мясо {int(2 * portion)} кг. </li>"
+                        f"<li>Рис {int(3 * portion)} кг. </li>"
+                        f"<li>Морковь {int(1 * portion)} кг. </li>"
+                        f"<li>Лук {int(1 * portion)} кг. </li>")
 def soup(request, portion):
-    return HttpResponse(f"<h1>Вы готовите суп на {portion} порций</p>"
-                        f"<li>Картошка {0,5 * portion} кг. </li>"
-                        f"<li>макароны {0,5 * portion} кг. </li>"
-                        f"<li>Морковь {0,1 * portion} кг. </li>"
-                        f"<li>Лук {0,1 * portion} кг. </li>")
+    return HttpResponse(f"<h1>Вы готовите СУП на {portion} порций</h1>"
+                        f"<li>Картошка {int(3 * portion)} кг. </li>"
+                        f"<li>Макароны {int(2 * portion)} кг. </li>"
+                        f"<li>Морковь {int(4 * portion)} кг. </li>"
+                        f"<li>Лук {int(6 * portion)} кг. </li>")
 def porridge(request, portion):
-    return HttpResponse(f"<h1>Вы готовите суп на {portion} порций</p>"
-                        f"<li>Мясо {1 * portion} кг. </li>"
-                        f"<li>Рис {0,5 * portion} кг. </li>"
-                        f"<li>Морковь {0,25 * portion} кг. </li>"
-                        f"<li>Лук {0,1 * portion} кг. </li>")
+    return HttpResponse(f"<h1>Вы готовите КАШУ на {portion} порций</h1>"
+                        f"<li>Мясо {int(4 * portion)} кг. </li>"
+                        f"<li>Рис {int(5 * portion)} кг. </li>"
+                        f"<li>Морковь {int(3 * portion)} кг. </li>"
+                        f"<li>Лук {int(2 * portion)} кг. </li>")
 
 
 
