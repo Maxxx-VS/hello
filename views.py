@@ -125,7 +125,8 @@ def porridge(request, portion):
                         f"<li>Морковь {int(3 * portion)} кг. </li>"
                         f"<li>Лук {int(2 * portion)} кг. </li>")
 def page_not_found(request, exception):
-    return HttpResponseNotFound("<h1>Страница не найдена</h1>")
+    return HttpResponseNotFound("<h1>Эта страница не найдена!<br>"
+                                "поищи другю страницу</h1>")
 
 
 
