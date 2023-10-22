@@ -2,7 +2,8 @@ import os
 import datetime
 
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseNotFound
+
 
 # def branches(request, name, sity, age):
 #     return HttpResponse(f"""
@@ -123,6 +124,8 @@ def porridge(request, portion):
                         f"<li>Рис {int(5 * portion)} кг. </li>"
                         f"<li>Морковь {int(3 * portion)} кг. </li>"
                         f"<li>Лук {int(2 * portion)} кг. </li>")
+def page_not_found(request, exception):
+    return HttpResponseNotFound("<h1>Страница не найдена</h1>")
 
 
 
