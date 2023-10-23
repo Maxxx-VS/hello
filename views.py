@@ -1,8 +1,9 @@
 import os
 import datetime
 
-from django.shortcuts import render
-from django.http import HttpResponse, HttpResponseNotFound
+from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
+from django.urls import reverse
 
 
 # def branches(request, name, sity, age):
@@ -127,7 +128,12 @@ def porridge(request, portion):
 def page_not_found(request, exception):
     return HttpResponseNotFound("<h1>Эта страница не найдена!<br>"
                                 "поищи другю страницу</h1>")
-
+def archive(request, year):
+    if year > 2023:
+        return redirect('home') # перенаправление на другие URL адреса
+        # url = reverse('news', args=("sport", ))
+        # return HttpResponseRedirect(url)
+    return HttpResponse(f'<h1>Архив по годам</h1><p>{year}</p>')
 
 
 
