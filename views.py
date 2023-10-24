@@ -4,7 +4,7 @@ import datetime
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-
+from .forms import PhotoUploadForms
 
 # def branches(request, name, sity, age):
 #     return HttpResponse(f"""
@@ -64,7 +64,17 @@ from django.urls import reverse
 
 # data = ["Python", "Java", "C#", "Go", "C++", "JS"]
 # return HttpResponse('About web')) #!!!!!
-
+def index_photo(request):
+    return render(request, 'index_photo.html')
+def upload_photo(request):
+    if request.method == 'POST':
+        form = PhotoUploadForms(request.POST, request.FILES)
+        if form.is_valid():
+            photo = form.cleaned_data['photo']
+        return HttpResponseRedirect('/hello/')
+    else:
+        form = PhotoUploadForms()
+    return render(request, 'upload.html', {form: form})
 def index(request):
     return HttpResponse("<h1>Главная</h1>"
                         "<h2>Строка №2</h2>"
@@ -134,6 +144,8 @@ def archive(request, year):
         # url = reverse('news', args=("sport", ))
         # return HttpResponseRedirect(url)
     return HttpResponse(f'<h1>Архив по годам</h1><p>{year}</p>')
+
+
 
 
 
