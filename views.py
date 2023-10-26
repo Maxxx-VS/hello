@@ -1,10 +1,13 @@
 import os
 import datetime
 
-import openpyxl
+# import openpyxl
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
+from django.views.decorators.csrf import csrf_exempt
+
+from mysite import settings
 from .forms import PhotoUploadForms, RegistrationForm
 
 # def branches(request, name, sity, age):
@@ -145,24 +148,22 @@ def archive(request, year):
         # url = reverse('news', args=("sport", ))
         # return HttpResponseRedirect(url)
     return HttpResponse(f'<h1>Архив по годам</h1><p>{year}</p>')
-def registration(request):
+def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         if form.is_valid():
             username = form.cleaned_data['username']
             password = form.cleaned_data['password']
-            save_to_excel(username, password)
-            # form.save()
-            return HttpResponseRedirect('/registration/')
-        else:
-            form = RegistrationForm()
-        return render(request, 'registration/registration.html', {form: form})
-def save_to_excel(username, password):
-    workbook = openpyxl.load_workbook('user.xlsx')
-    sheet = workbook.active
-    row_count = sheet.max_row + 1
-    sheet.cell(row = row_count, column = 1).value = username
-    sheet.cell(row = row_count, column = 2).value = password
+            save_to_file(username, password)
+            return render(request, 'hello/registration_success.html')
+    else:
+        form = RegistrationForm()
+    return render(request, 'hello/register.html', {'form': form})
+
+def save_to_file(username, password):
+    file_path = settings.USER_DATA_FILE
+    with open(file_path, 'a') as file:
+        file.write(f"Username: {username}, Password: {password}\n")
 
 
 
