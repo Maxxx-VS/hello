@@ -6,4 +6,5 @@ app_name = 'hello'
 urlpatterns = [
     path('', views.index_photo, name = 'index_photo'),
     path('upload/', views.upload_photo, name = 'upload_photo'),
+    path('registration/', views.registration, name = 'registration' ),
 ]
