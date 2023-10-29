@@ -8,14 +8,31 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <p>{{ menu|join:'||' }}</p>
-    <p>добавили число и получили {{ float|add:"53"}} проверка на делимость на 2 {{ float|divisibleby:'2' }}</p>
-    <p>{{ lst }} длина колекци:{{ lst|length }}</p>
-    <p>{{ set }}</p>
-    <p>{{ dict.key_1 }} {{ dict.key_2 }}</p>
-    <p>{{ obj.a }}</p>
-    <p>{{ "The Main Page"|slugify }}</p>
-    <h1>{{ title }}</h1>
+<p>{{ menu|join:'||' }}</p>
+<h1>{{ title }}</h1>
+    <ul>
+        {% for p in posts %}
+        {% if p.is_published %}
+        <li>
+            <h2>{{ p.title }}</h2>
+            <p>{{ p.content }}</p>
+            <p><a href="{% url 'more' p.id %}">Узнать подробнее</a></p>
+            {% if not forloop.last %}
+            <hr>
+            {% endif %}
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+
+
+<!--    <p>{{ lst }} длина колекци:{{ lst|length }}</p>-->
+<!--    <p>{{ set }}</p>-->
+<!--    <p>{{ dict.key_1 }} {{ dict.key_2 }}</p>-->
+<!--    <p>{{ obj.a }}</p>-->
+<!--    <p>{{ "The Main Page"|slugify }}</p>-->
+<!--    <h1>{{ title }}</h1>-->
+
 
 <!--    <h1>{{ title|upper|cut:' ' }}</h1>-->
 

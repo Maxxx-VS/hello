@@ -68,10 +68,10 @@ from .forms import PhotoUploadForms, RegistrationForm
 
 # data = ["Python", "Java", "C#", "Go", "C++", "JS"]
 # return HttpResponse('About web')) #!!!!!
-class MyClass:
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
+# class MyClass:
+#     def __init__(self, a, b):
+#         self.a = a
+#         self.b = b
 
 menu = ["Главная страница",
         "Новости",
@@ -79,8 +79,15 @@ menu = ["Главная страница",
         "О компании",
         "Контакты",
         "Главная страница городов"]
+
+data_db = [
+    {'id': 1, 'title': 'Анкерно-угловая опора', 'content': 'Описание А-УО', 'is_published': True},
+    {'id': 2, 'title': 'Промежуточная опора', 'content': 'Описание ПО', 'is_published': True},
+    {'id': 3, 'title': 'Концевая опора', 'content': 'Описание КО', 'is_published': True},
+]
 def index_photo(request):
     return render(request, 'index_photo.html')
+
 def upload_photo(request):
     if request.method == 'POST':
         form = PhotoUploadForms(request.POST, request.FILES)
@@ -94,13 +101,16 @@ def index(request):
     data = {
         'title': "Главная страница",
         'menu': menu,
-        'float': 26.58,
-        'lst': [1, 2, "abx", True],
-        'set': {1, 2, 3 ,5, 2},
-        'dict': {'key_1': 'vlue_1', 'key_2': 'vlue_2'},
-        'obj': MyClass(10, 20)
+        'posts': data_db,
+        # 'float': 26.58,
+        # 'lst': [1, 2, "abx", True],
+        # 'set': {1, 2, 3 ,5, 2},
+        # 'dict': {'key_1': 'vlue_1', 'key_2': 'vlue_2'},
+        # 'obj': MyClass(10, 20)
     }
     return render(request, 'index.html', context=data)
+def show_more(rerequest, more_id):
+    return HttpResponse(f'Отображение строки с id = {more_id}')
 def news(request):
     data = {'title': "Новости"}
     return render(request, 'news.html', data)
