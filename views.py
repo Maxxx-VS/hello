@@ -68,6 +68,11 @@ from .forms import PhotoUploadForms, RegistrationForm
 
 # data = ["Python", "Java", "C#", "Go", "C++", "JS"]
 # return HttpResponse('About web')) #!!!!!
+class MyClass:
+    def __init__(self, a, b):
+        self.a = a
+        self.b = b
+
 menu = ["Главная страница",
         "Новости",
         "Руководство компании",
@@ -91,9 +96,9 @@ def index(request):
         'menu': menu,
         'float': 26.58,
         'lst': [1, 2, "abx", True],
-        'set': {1, 2, 3 ,5},
+        'set': {1, 2, 3 ,5, 2},
         'dict': {'key_1': 'vlue_1', 'key_2': 'vlue_2'},
-        'obj': {}
+        'obj': MyClass(10, 20)
     }
     return render(request, 'index.html', context=data)
 def news(request):

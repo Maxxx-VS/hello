@@ -8,8 +8,16 @@
     <title>{{ title }}</title>
 </head>
 <body>
-    <p>{{ menu }}</p>
+    <p>{{ menu|join:'||' }}</p>
+    <p>добавили число и получили {{ float|add:"53"}} проверка на делимость на 2 {{ float|divisibleby:'2' }}</p>
+    <p>{{ lst }} длина колекци:{{ lst|length }}</p>
+    <p>{{ set }}</p>
+    <p>{{ dict.key_1 }} {{ dict.key_2 }}</p>
+    <p>{{ obj.a }}</p>
+    <p>{{ "The Main Page"|slugify }}</p>
     <h1>{{ title }}</h1>
+
+<!--    <h1>{{ title|upper|cut:' ' }}</h1>-->
 
 </body>
 </html>
