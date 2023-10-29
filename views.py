@@ -6,7 +6,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
-
+from django.template.loader import render_to_string
 from mysite import settings
 from .forms import PhotoUploadForms, RegistrationForm
 
@@ -68,6 +68,12 @@ from .forms import PhotoUploadForms, RegistrationForm
 
 # data = ["Python", "Java", "C#", "Go", "C++", "JS"]
 # return HttpResponse('About web')) #!!!!!
+menu = ["Главная страница",
+        "Новости",
+        "Руководство компании",
+        "О компании",
+        "Контакты",
+        "Главная страница городов"]
 def index_photo(request):
     return render(request, 'index_photo.html')
 def upload_photo(request):
@@ -80,35 +86,23 @@ def upload_photo(request):
         form = PhotoUploadForms()
     return render(request, 'upload.html', {form: form})
 def index(request):
-    return HttpResponse("<h1>Главная</h1>"
-                        "<h2>Строка №2</h2>"
-                        "<h3>Строка №3</h3>"
-                        "<p>Добро пожаловать на курс по изучению фреймворка Django с нуля.<br> Мы начнем с "
-                        "самых простых вещей. <br><br>"
-                        "Все, что вам потребуется – "
-                        "<li>базовые знания Python. Общее представление о "
-                        "<li>HTML/CSS тоже пригодится"
-                        "<li>но если вы раньше не сталкивались с "
-                        "версткой – ничего страшного, разберемся.</p>")
-def index_en(request):
-    return HttpResponse("<h1>Home</h1"
-                         "<h2>Line No. 2</h2>"
-                         "<h3>Line No. 3</h3>"
-                         "<p>Welcome to the course on learning the Django framework from scratch.<br> We'll start with "
-                         "the simplest things. <br><br>"
-                         "Everything you need - "
-                         "<li>Basic knowledge of Python. General understanding of "
-                         "<li>HTML/CSS will come in handy too"
-                         "<li>but if you haven't encountered before"
-                         "layout - no big deal, we'll figure it out.</p>")
+    data = {
+        'title': "Главная страница",
+        'menu': menu,
+        'float': 26.58,
+        'lst': [1, 2, "abx", True],
+        'set': {1, 2, 3 ,5},
+        'dict': {'key_1': 'vlue_1', 'key_2': 'vlue_2'},
+        'obj': {}
+    }
+    return render(request, 'index.html', context=data)
 def news(request):
-    return HttpResponse("<h1>Новости</h1>")
-    # data = {"header": "Hi Dgango!", "message": "Добро пожаловать"}
-    # return render(request, "paris.html", context=data)
+    data = {'title': "Новости"}
+    return render(request, 'news.html', data)
 def management(request):
     return HttpResponse("<h1>Руководство компании</h1")
-def about_company(request):
-    return HttpResponse("<h1>О компании</h1")
+def about(request):
+    return render(request, 'about.html', {'title': 'О компании'})
 def contacts(request):
     return HttpResponse("<h1>Контакты</h1")
 def branches(request):
