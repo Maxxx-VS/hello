@@ -73,17 +73,20 @@ from .forms import PhotoUploadForms, RegistrationForm
 #         self.a = a
 #         self.b = b
 
-menu = ["Главная страница",
-        "Новости",
-        "Руководство компании",
-        "О компании",
-        "Контакты",
-        "Главная страница городов"]
+menu = [
+        {'title': "Новости", 'url_name': 'news'},
+        {'title': "Руководство компании", 'url_name': 'management'},
+        {'title': "О компании", 'url_name': 'about'},
+        {'title': "Контакты", 'url_name': 'contacts'},
+        # {'title': "Главная страница городов", 'url_name': 'branches'},
+        # {'title': "Архив по годам", 'url_name': 'archive'},
+        # {'title': "Кухня", 'url_name': 'cooking'}
+]
 
 data_db = [
     {'id': 1, 'title': 'Анкерно-угловая опора', 'content': 'Описание А-УО', 'is_published': True},
     {'id': 2, 'title': 'Промежуточная опора', 'content': 'Описание ПО', 'is_published': True},
-    {'id': 3, 'title': 'Концевая опора', 'content': 'Описание КО', 'is_published': True},
+    {'id': 3, 'title': 'Концевая опора', 'content': 'Описание КО', 'is_published': True}
 ]
 def index_photo(request):
     return render(request, 'index_photo.html')
