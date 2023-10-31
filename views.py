@@ -180,6 +180,30 @@ def save_to_file(username, password):
     file_path = settings.USER_DATA_FILE
     with open(file_path, 'a') as file:
         file.write(f"Username: {username}, Password: {password}\n")
+
+
+@csrf_exempt
+def biography(request):
+    if request.method == 'POST':
+        form = RegistrationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data['username']
+            user_text = form.cleaned_data['biography']
+            save_to_biography(username, user_text)
+            return render(request, 'hello/registration_success.html')
+    else:
+        form = RegistrationForm()
+    return render(request, 'hello/biography.html', {'form': form})
+
+def save_to_biography(username, biography):
+    file_path = settings.USER_DATA_FILE
+    # with open(file_path, 'a') as file:
+    #     file.write(f"Username: {username}, Biography: {biography}\n")
+
+    with open("biography.json", "a", encoding='utf-8') as file:
+        file.write(f"Username: {username}, Biography: {biography}\n")
+        # players_ststs = json.load(file)
+
 def login_view(request):
     if request.method == 'POST':
         username = request.POST['username']
