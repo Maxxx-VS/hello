@@ -6,7 +6,7 @@ class PhotoUploadForms(forms.Form):
     photo = forms.ImageField()
 class RegistrationForm(forms.Form):
     username = forms.CharField(label="Username")
-    password =  forms.CharField(label="Password", widget=forms.PasswordInput)
+    password = forms.CharField(label="Password", widget=forms.PasswordInput)
 
 # class RegistrationForm(UserCreationForm):
 #     class Meta:

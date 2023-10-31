@@ -1,10 +1,11 @@
-from django.urls import path
-from . import views
+from django.urls import path, include
+from . import views, admin
+from hello.views import secret_page
 
-# app_name = 'hello'
 
 urlpatterns = [
-    # path('', views.index_photo, name='index_photo'),
-    # path('upload/', views.upload_photo, name='upload_photo'),
-    path('register/', views.register, name='register' ),
+    path('register/', views.register, name='register'),
+    path('admin/', admin.site.urls),
+    path('accounts/', include('django.contripb.auth.urls')),
+    path('secret_page/', secret_page, name='secret_page'),
 ]

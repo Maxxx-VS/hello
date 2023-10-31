@@ -1,14 +1,17 @@
 import os
 import datetime
-
 # import openpyxl
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.urls import reverse
-from django.views.decorators.csrf import csrf_exempt
 from django.template.loader import render_to_string
 from mysite import settings
 from .forms import PhotoUploadForms, RegistrationForm
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+from .utils import authenticate
 
 # def branches(request, name, sity, age):
 #     return HttpResponse(f"""
@@ -160,6 +163,7 @@ def archive(request, year):
         # url = reverse('news', args=("sport", ))
         # return HttpResponseRedirect(url)
     return HttpResponse(f'<h1>Архив по годам</h1><p>{year}</p>')
+@csrf_exempt
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -176,6 +180,17 @@ def save_to_file(username, password):
     file_path = settings.USER_DATA_FILE
     with open(file_path, 'a') as file:
         file.write(f"Username: {username}, Password: {password}\n")
+def login_view(request):
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        if authenticate(username, password):
+            login(request, username)
+            return HttpResponseRedirect('secret_page')
+    return render(request, 'hello/login.html')
+@login_required
+def secret_page(request):
+    return render(request, 'hello/login_required.html')
 
 
 

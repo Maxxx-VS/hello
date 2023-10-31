@@ -8,6 +8,7 @@
     <title>Document</title>
 </head>
 <body>
+    <h2>Форма для регистации</h2>
     <form method="post" action="{% url 'register' %}">
         {% csrf_token %}
         {{ form.as_p }}
