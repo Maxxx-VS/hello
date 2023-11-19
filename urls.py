@@ -1,14 +1,15 @@
-from django.urls import path, include
+from django.urls import path, re_path, register_converter
 from . import views
-from django.contrib import admin
-from hello.views import secret_page
+from . import converters
 
 
+register_converter(converters.FourDigitYearConverter, "year4")
 
 urlpatterns = [
-    path('register/', views.register, name='register'),
-    path('biography/', views.biography, name='biography'),
-    path('admin/', admin.site.urls),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('secret_page/', secret_page, name='secret_page'),
+    path('', views.index, name='home'),  # http://127.0.0.1:8000
+    path('about/', views.about, name='about'),
+    path('addpage/', views.addpage, name='add_page'),
+    path('contact/', views.contact, name='contact'),
+    path('login/', views.login, name='login'),
+    path('post/<int:post_id>/', views.show_post, name='post'),
 ]
